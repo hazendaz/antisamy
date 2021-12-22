@@ -140,7 +140,11 @@
             <artifactId>slf4j-api</artifactId>
             <version>${version.slf4j}</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${version.slf4j}</version>
+        </dependency>
         <!-- While Java 7+ includes Xerces in the JRE, it apparently doesn't provide all the features we use that are in the 3rd party version. 
             So we import it directly. -->
         <dependency>
@@ -199,12 +203,6 @@
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest</artifactId>
             <version>3.0</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jcl-over-slf4j</artifactId>
-            <version>${version.slf4j}</version>
             <scope>test</scope>
         </dependency>
         <!-- without this import you get: SLF4J: Defaulting to no-operation (NOP) logger implementation -->
