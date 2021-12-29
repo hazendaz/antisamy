@@ -39,6 +39,7 @@ import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.sax.SAXResult;
 import javax.xml.transform.sax.SAXSource;
+import org.apache.xml.serializer.Serializer;
 import org.htmlunit.cyberneko.parsers.SAXParser;
 import org.owasp.validator.html.CleanResults;
 import org.owasp.validator.html.Policy;
@@ -226,8 +227,7 @@ public class AntiSamySAXScanner extends AbstractAntiSamyScanner {
       transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, omitXml ? "yes" : "no");
       transformer.setOutputProperty(OutputKeys.METHOD, "html");
 
-      //noinspection deprecation
-      final org.apache.xml.serialize.OutputFormat format = getOutputFormat();
+      final Serializer format = getOutputFormat();
       //noinspection deprecation
       final org.apache.xml.serialize.HTMLSerializer serializer = getHTMLSerializer(writer, format);
 
