@@ -35,6 +35,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.apache.batik.css.parser.ParseException;
+import org.apache.xml.serializer.Serializer;
 import org.htmlunit.cyberneko.parsers.DOMFragmentParser;
 import org.htmlunit.cyberneko.xerces.dom.DocumentImpl;
 import org.owasp.validator.css.CssScanner;
@@ -185,8 +186,7 @@ public class AntiSamyDOMScanner extends AbstractAntiSamyScanner {
 
       StringWriter out = new StringWriter();
 
-      @SuppressWarnings("deprecation")
-      org.apache.xml.serialize.OutputFormat format = getOutputFormat();
+      final Serializer format = getOutputFormat();
 
       //noinspection deprecation
       org.apache.xml.serialize.HTMLSerializer serializer = getHTMLSerializer(out, format);

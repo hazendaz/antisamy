@@ -30,8 +30,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.MissingResourceException;
+import java.util.Properties;
 import java.util.ResourceBundle;
-import org.apache.xml.serialize.OutputFormat;
+import org.apache.xml.serializer.Serializer;
+import org.apache.xml.serializer.SerializerFactory;
 import org.owasp.validator.html.CleanResults;
 import org.owasp.validator.html.InternalPolicy;
 import org.owasp.validator.html.Policy;
@@ -96,25 +98,25 @@ public abstract class AbstractAntiSamyScanner {
     errorMessages.add(ErrorMessageUtil.getMessage(messages, errorKey, objs));
   }
 
-  protected OutputFormat getOutputFormat() {
+  protected Serializer getOutputFormat() {
 
-    OutputFormat format = new OutputFormat();
-    format.setOmitXMLDeclaration(policy.isOmitXmlDeclaration());
-    format.setOmitDocumentType(policy.isOmitDoctypeDeclaration());
-    format.setPreserveEmptyAttributes(true);
-    format.setPreserveSpace(policy.isPreserveSpace());
+    Properties properties = new Properties();
+    properties.setProperty("omitXMLDeclaration", Boolean.toString(policy.isOmitXmlDeclaration()));
+    properties.setProperty("omitDocumentType", Boolean.toString(policy.isOmitDoctypeDeclaration()));
+    properties.setProperty("preserveEmptyAttributes", Boolean.TRUE.toString());
+    properties.setProperty("preserveSpace", Boolean.toString(policy.isPreserveSpace()));
 
     if (policy.isFormatOutput()) {
-      format.setLineWidth(80);
-      format.setIndenting(true);
-      format.setIndent(2);
+      properties.setProperty("lineWidth", "80");
+      properties.setProperty("indenting", Boolean.TRUE.toString());
+      properties.setProperty("indent", "2");
     }
 
-    return format;
+    return SerializerFactory.getSerializer(properties);
   }
 
-  protected org.apache.xml.serialize.HTMLSerializer getHTMLSerializer(
-      Writer w, OutputFormat format) {
+  protected Serializer getHTMLSerializer(
+      Writer w, Serializer format) {
     return new ASHTMLSerializer(w, format, policy);
   }
 
