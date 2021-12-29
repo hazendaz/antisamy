@@ -5,7 +5,7 @@ import java.io.Writer;
 import java.util.Locale;
 import org.apache.xml.serialize.ElementState;
 import org.apache.xml.serialize.HTMLdtd;
-import org.apache.xml.serialize.OutputFormat;
+import org.apache.xml.serializer.Serializer;
 import org.owasp.validator.html.InternalPolicy;
 import org.owasp.validator.html.TagMatcher;
 import org.slf4j.Logger;
@@ -23,7 +23,7 @@ public class ASHTMLSerializer extends org.apache.xml.serialize.HTMLSerializer {
   private final TagMatcher allowedEmptyTags;
   private final TagMatcher requireClosingTags;
 
-  public ASHTMLSerializer(Writer w, OutputFormat format, InternalPolicy policy) {
+  public ASHTMLSerializer(Writer w, Serializer format, InternalPolicy policy) {
     super(w, format);
     this.allowedEmptyTags = policy.getAllowedEmptyTags();
     this.requireClosingTags = policy.getRequiresClosingTags();
