@@ -140,6 +140,11 @@
             <artifactId>jcl-over-slf4j</artifactId>
             <version>${version.slf4j}</version>
         </dependency>
+        <dependency>
+            <groupId>xalan</groupId>
+            <artifactId>xalan</artifactId>
+            <version>2.7.3</version>
+        </dependency>
         <!-- While Java 7+ includes Xerces in the JRE, it apparently doesn't provide all the features we use that are in the 3rd party version. 
             So we import it directly. -->
         <dependency>
