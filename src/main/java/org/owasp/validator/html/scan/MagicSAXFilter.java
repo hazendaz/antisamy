@@ -25,16 +25,13 @@
 
 package org.owasp.validator.html.scan;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
+import java.util.Stack;
 import java.util.regex.Pattern;
 import org.htmlunit.cyberneko.filters.DefaultFilter;
 import org.htmlunit.cyberneko.xerces.util.XMLAttributesImpl;
-import org.htmlunit.cyberneko.xerces.xni.Augmentations;
-import org.htmlunit.cyberneko.xerces.xni.QName;
-import org.htmlunit.cyberneko.xerces.xni.XMLAttributes;
-import org.htmlunit.cyberneko.xerces.xni.XMLString;
-import org.htmlunit.cyberneko.xerces.xni.XNIException;
-import org.htmlunit.cyberneko.xerces.xni.parser.XMLDocumentFilter;
 import org.owasp.validator.css.CssScanner;
 import org.owasp.validator.html.CleanResults;
 import org.owasp.validator.html.InternalPolicy;
@@ -44,6 +41,12 @@ import org.owasp.validator.html.model.Attribute;
 import org.owasp.validator.html.model.Tag;
 import org.owasp.validator.html.util.ErrorMessageUtil;
 import org.owasp.validator.html.util.HTMLEntityEncoder;
+import shaded.org.xerces.xni.Augmentations;
+import shaded.org.xerces.xni.QName;
+import shaded.org.xerces.xni.XMLAttributes;
+import shaded.org.xerces.xni.XMLString;
+import shaded.org.xerces.xni.XNIException;
+import shaded.org.xerces.xni.parser.XMLDocumentFilter;
 
 /**
  * Implementation of an HTML-filter that adheres to an AntiSamy policy. This filter is SAX-based
